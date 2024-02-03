@@ -23,7 +23,7 @@ Table of Contents:
   npm start / nodemon index.js
 
 * Interacting with the API
-  1.Base URL: http://localhost:8001
+  1.Base URL: http://localhost:8005
     API Endpoints:
       POST /api/products: Create a new product.
       GET /api/products: Get all products.
