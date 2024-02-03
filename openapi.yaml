@@ -1,0 +1,187 @@
+openapi: 3.0.0
+info:
+  title: Product API
+  description: CRUD operations for managing products
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8001
+    description: Local development server
+
+paths:
+  /products:
+    post:
+      summary: Create a new product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              name: "Product Name"
+              price: 25.99
+              description: "Clothing"
+              color: "Blue"
+              variants:
+                - name: "Size"
+                  sku: "S"
+                  additionalCost: 0
+                  stockCount: 50
+      responses:
+        '200':
+          description: Product created successfully
+          content:
+            application/json:
+              example:
+                data:
+                  _id: "12345"
+                  name: "Product Name"
+                  price: 25.99
+                  description: "Clothing"
+                  color: "Blue"
+                  variants:
+                    - name: "Size"
+                      sku: "S"
+                      additionalCost: 0
+                      stockCount: 50
+                message: "Product document added successfully"
+
+    get:
+      summary: Get all products
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              example:
+                - _id: "12345"
+                  name: "Product 1"
+                  price: 25.99
+                  description: "Clothing"
+                  color: "Blue"
+                  variants:
+                    - name: "Size"
+                      sku: "S"
+                      additionalCost: 0
+                      stockCount: 50
+                - _id: "67890"
+                  name: "Product 2"
+                  price: 19.99
+                  description: "Electronics"
+                  color: "Black"
+                  variants:
+                    - name: "Memory"
+                      sku: "8GB"
+                      additionalCost: 5
+                      stockCount: 20
+
+  /products/{id}:
+    get:
+      summary: Get a single product by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the product to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              example:
+                _id: "12345"
+                name: "Product 1"
+                price: 25.99
+                description: "Clothing"
+                color: "Blue"
+                variants:
+                  - name: "Size"
+                    sku: "S"
+                    additionalCost: 0
+                    stockCount: 50
+
+    put:
+      summary: Update a product by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the product to update
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              name: "Updated Product"
+              price: 29.99
+              description: "Electronics"
+              color: "Red"
+              variants:
+                - name: "Capacity"
+                  sku: "128GB"
+                  additionalCost: 10
+                  stockCount: 30
+      responses:
+        '200':
+          description: Product updated successfully
+          content:
+            application/json:
+              example:
+                message: "Updated successfully"
+
+    delete:
+      summary: Delete a product by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: ID of the product to delete
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Product deleted successfully
+          content:
+            application/json:
+              example:
+                message: "Deleted successfully"
+
+  /products/search/{keyword}:
+    get:
+      summary: Search products by name, description, or variant name
+      parameters:
+        - in: path
+          name: keyword
+          required: true
+          description: Search keyword
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              example:
+                - _id: "12345"
+                  name: "Product 1"
+                  price: 25.99
+                  description: "Clothing"
+                  color: "Blue"
+                  variants:
+                    - name: "Size"
+                      sku: "S"
+                      additionalCost: 0
+                      stockCount: 50
+                - _id: "67890"
+                  name: "Product 2"
+                  price: 19.99
+                  description: "Electronics"
+                  color: "Black"
+                  variants:
+                    - name: "Memory"
+                      sku: "8GB"
+                      additionalCost: 5
+                      stockCount: 20
