@@ -41,7 +41,7 @@ Table of Contents:
     Testing Approach
 
 * Contributing
-    Fork the repository / clone the repository (https://github.com/Hplekhan/Node.js_RestAPI-s.git)
+    Fork the repository / clone the repository (git clone https://github.com/Hplekhan/Node.js_RestAPI-s.git)
     Create a new branch.
     Make your changes.
     Submit a pull request. 
